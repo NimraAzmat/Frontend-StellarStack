@@ -64,7 +64,7 @@ export default function ApplicationsPage() {
         My Applications</h2>
       {error && <p className="error">{error}</p>}
       {applications.length === 0 ? (
-        <p>You haven't applied to any jobs yet.</p>
+        <p>You have not applied to any jobs yet</p>
       ) : (
         <SimpleTable headers={headers} data={data} />
       )}
