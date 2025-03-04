@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import InputField from "../components/InputField";
-import SelectField from "../components/SelectField";
-import Button from "../components/Button";
-import '../globals.css';
+import InputField from "@/app/components/InputField";
+import SelectField from "@/app/components/SelectField";
+import Button from "@/app/components/Button";
+import '@/app/globals.css';
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
