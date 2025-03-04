@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 
-import Button from "../../components/Button";
+import Button from "@/app/components/Button";
 
-import '../../globals.css';
+import '@/app/globals.css';
 export default function AdminDashboard() {
   const router = useRouter();
 
