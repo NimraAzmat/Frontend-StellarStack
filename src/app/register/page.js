@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import InputField from "@/app/components/InputField";
 import SelectField from "@/app/components/SelectField";
 import Button from "@/app/components/Button";
-
+require('dotenv').config();
 import '@/app/globals.css';
 export default function RegisterPage() {
   const router = useRouter();
@@ -20,7 +20,7 @@ export default function RegisterPage() {
     setError("");
 
     try {
-      const res = await fetch(`http://localhost:4000/auth/register`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password, role }),

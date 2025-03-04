@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-
+require('dotenv').config();
 const Home = () => {
   const [jobs, setJobs] = useState([]);
-
+  console.log(process.env.BASE_URL)
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/jobs`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/jobs`);
         setJobs(res.data);
       } catch (error) {
         console.error("Error fetching jobs", error);

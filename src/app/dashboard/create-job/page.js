@@ -6,7 +6,7 @@ import '@/app/globals.css';
 import InputField from "@/app/components/InputField";
 import Button from "@/app/components/Button";
 import SelectField from "@/app/components/SelectField";
-
+require('dotenv').config();
 export default function CreateJobPage() {
   const router = useRouter();
   const [title, setTitle] = useState("");
@@ -24,7 +24,7 @@ export default function CreateJobPage() {
     setError("");
 
     try {
-      const res = await fetch(`http://localhost:4000/jobs`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/jobs`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

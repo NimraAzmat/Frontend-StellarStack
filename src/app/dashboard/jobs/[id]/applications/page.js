@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Button from "@/app/components/Button";
 import SimpleTable from "@/app/components/SimpleTable";
-
+require('dotenv').config();
 export default function ManageApplicationsPage() {
   const router = useRouter();
   const { id } = useParams(); // Job ID
@@ -15,7 +15,7 @@ export default function ManageApplicationsPage() {
   useEffect(() => {
     const fetchApplicants = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/applications/${id}/applicants`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/applications/${id}/applicants`, {
           headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
           credentials: "include",
         });
@@ -35,7 +35,7 @@ export default function ManageApplicationsPage() {
   const handleUpdateStatus = async (applicantId, status) => {
     try {
       console.log(applicantId)
-      const res = await fetch(`http://localhost:4000/applications/${id}/applicants/${applicantId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/applications/${id}/applicants/${applicantId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

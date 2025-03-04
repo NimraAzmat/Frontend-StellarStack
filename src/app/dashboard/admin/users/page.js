@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import InputField from "@/app/components/InputField";
 import Table from "@/app/components/Table";
 import '@/app/globals.css';
+require('dotenv').config();
 export default function ManageUsers() {
   const router = useRouter();
   const [users, setUsers] = useState([]);
@@ -19,8 +20,9 @@ export default function ManageUsers() {
 
   useEffect(() => {
     const fetchUsers = async () => {
+      // console.log(process.env.NEXT_PUBLIC_BASE_URL)
       try {
-        const res = await fetch(`http://localhost:4000/admin/users`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/admin/users`, {
           headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
           credentials: "include",
         });
@@ -44,7 +46,7 @@ export default function ManageUsers() {
 
   const handleDelete = async (userId) => {
     try {
-      await fetch(`http://localhost:4000/admin/users/${userId}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/admin/users/${userId}`, {
         method: "DELETE",
         headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
         credentials: "include",

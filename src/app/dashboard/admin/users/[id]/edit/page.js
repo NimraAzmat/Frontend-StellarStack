@@ -6,6 +6,7 @@ import InputField from "@/app/components/InputField";
 import '@/app/globals.css';
 import SelectField from "@/app/components/SelectField";
 import Button from "@/app/components/Button";
+require('dotenv').config();
 export default function EditUserPage() {
   const router = useRouter();
   const { id } = useParams();
@@ -16,7 +17,7 @@ export default function EditUserPage() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/admin/users/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/admin/users/${id}`, {
           headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
           credentials: "include",
         });
@@ -36,7 +37,7 @@ export default function EditUserPage() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await fetch(`http://localhost:4000/admin/users/${id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/admin/users/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import '@/app/globals.css';
 import Button from "@/app/components/Button";
 import SimpleTable from "@/app/components/SimpleTable";
-
+require('dotenv').config();
 export default function RecruiterJobsPage() {
   const router = useRouter();
   const [jobs, setJobs] = useState([]);
@@ -19,7 +19,7 @@ export default function RecruiterJobsPage() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/jobs`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/jobs`, {
           credentials: "include",
         });
 
@@ -46,7 +46,7 @@ export default function RecruiterJobsPage() {
 
   const handleDelete = async (jobId) => {
     try {
-      const res = await fetch(`http://localhost:4000/jobs/${jobId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/jobs/${jobId}`, {
         method: "DELETE",
         headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
         credentials: "include",

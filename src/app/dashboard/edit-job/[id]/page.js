@@ -6,7 +6,7 @@ import InputField from "@/app/components/InputField";
 import Button from "@/app/components/Button";
 import SelectField from "@/app/components/SelectField";
 import '@/app/globals.css';
-
+require('dotenv').config();
 export default function EditJobPage() {
   const router = useRouter();
   const { id } = useParams();
@@ -17,7 +17,7 @@ export default function EditJobPage() {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/jobs/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/jobs/${id}`, {
           credentials: "include",
         });
 
@@ -36,7 +36,7 @@ export default function EditJobPage() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:4000/jobs/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/jobs/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

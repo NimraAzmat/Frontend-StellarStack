@@ -2,7 +2,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import "@/app/globals.css";
-
+require('dotenv').config();
 export default function Layout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -21,7 +21,7 @@ export default function Layout({ children }) {
 
   const handleLogout = async () => {
     try {
-      await fetch(`http://localhost:4000/auth/logout`, {
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });

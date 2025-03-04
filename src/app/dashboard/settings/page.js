@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import InputField from "@/app/components/InputField";
 import Button from "@/app/components/Button";
 import '@/app/globals.css';
-
+require('dotenv').config();
 export default function SettingsPage() {
   const [user, setUser] = useState({ name: "", email: "" });
   const [password, setPassword] = useState("");
@@ -14,7 +14,7 @@ export default function SettingsPage() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/users/me`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users/me`, {
           method: "GET",
           headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
           credentials: "include",
@@ -36,7 +36,7 @@ export default function SettingsPage() {
     e.preventDefault();
     try {
       console.log(user)
-      const res = await fetch(`http://localhost:4000/users/update`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

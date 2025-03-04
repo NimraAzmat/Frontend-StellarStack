@@ -6,6 +6,7 @@ import InputField from "@/app/components/InputField";
 import SelectField from "@/app/components/SelectField";
 import Button from "@/app/components/Button";
 import '@/app/globals.css';
+require('dotenv').config();
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +16,7 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:4000/auth/login`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

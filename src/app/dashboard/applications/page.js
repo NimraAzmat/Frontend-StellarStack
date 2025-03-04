@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import SimpleTable from "@/app/components/SimpleTable";
 import '@/app/globals.css';
+require('dotenv').config();
 export default function ApplicationsPage() {
   const [applications, setApplications] = useState([]);
   const [error, setError] = useState("");
@@ -12,7 +13,7 @@ export default function ApplicationsPage() {
     const userId = localStorage.getItem("userId");
     const fetchJobs = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/jobs`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/jobs`, {
           method: "GET",
           credentials: "include",
         });

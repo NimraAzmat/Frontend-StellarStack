@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-
+require('dotenv').config();
 export default function JobDetails() {
   const router = useRouter();
   const { id } = useParams();
@@ -16,7 +16,7 @@ export default function JobDetails() {
     const fetchJobAndCheckApplicationStatus = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`http://localhost:4000/jobs/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/jobs/${id}`, {
           credentials: "include",
         });
         if (!res.ok) {
@@ -31,7 +31,7 @@ export default function JobDetails() {
           setJob(jobData);
           const user = localStorage.getItem("userId");
           console.log(jobData._id, user);
-          const applicationStatusRes = await fetch(`http://localhost:4000/applications/${jobData._id}/check/${user}`, {
+          const applicationStatusRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/applications/${jobData._id}/check/${user}`, {
             method: "GET",
             headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
             credentials: "include",
@@ -60,7 +60,7 @@ export default function JobDetails() {
   //   const fetchJob = async () => {
   //     setLoading(true);
   //     try {
-  //       const res = await fetch(`http://localhost:4000/jobs/${id}`, {
+  //       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/jobs/${id}`, {
   //         credentials: "include",
   //       });
   //       if (!res.ok) {
@@ -94,7 +94,7 @@ export default function JobDetails() {
   //   const checkApplicationStatus = async () => {
   //     try {
   //       console.log("Checking application status id", id, job);
-  //       const res = await fetch(`http://localhost:4000/applications/${id}/check`, {
+  //       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/applications/${id}/check`, {
   //         method: "GET",
   //         headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
   //         credentials: "include",
@@ -121,7 +121,7 @@ export default function JobDetails() {
         router.push("/login");
         return;
       }
-      const res = await fetch(`http://localhost:4000/applications/${id}/apply`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/applications/${id}/apply`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
