@@ -144,26 +144,27 @@ export default function Dashboard() {
               </div>
 
               {/* Job Listings */}
-              {jobs.length === 0 ? (
-                <p className="text-gray-500">No jobs found.</p>
-              ) : (
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {jobs.map((job) => (
-                    <div key={job._id} className="bg-white p-2 shadow rounded-lg border">
-                      <h3 className="text-lg font-bold">{job.title}</h3>
-                      <p className="text-gray-600">{job.company} - {job.location}</p>
-                      <p className="text-green-600 font-semibold">Salary: {job.salary}</p>
-                      <p className="text-gray-700">Type: {job.type}</p>
-                      <button
-                        className="mt-3 w-fit p-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
-                        onClick={() => window.location.href = `/job/${job._id}`}
-                      >
-                        View Job
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
+           {jobs && jobs.length > 0 ? (
+  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {jobs.map((job) => (
+      <div key={job._id} className="bg-white p-2 shadow rounded-lg border">
+        <h3 className="text-lg font-bold">{job.title}</h3>
+        <p className="text-gray-600">{job.company} - {job.location}</p>
+        <p className="text-green-600 font-semibold">Salary: {job.salary}</p>
+        <p className="text-gray-700">Type: {job.type}</p>
+        <button
+          className="mt-3 w-fit p-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+          onClick={() => window.location.href = `/job/${job._id}`}
+        >
+          View Job
+        </button>
+      </div>
+    ))}
+  </div>
+) : (
+  <p>No jobs found.</p>
+)}
+    
             </div>
           )}
         </main>
