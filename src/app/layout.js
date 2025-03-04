@@ -1,7 +1,7 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import "./globals.css";
+import "@/app/globals.css";
 
 export default function Layout({ children }) {
   const pathname = usePathname();
