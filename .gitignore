@@ -1,0 +1,13 @@
+# Ignore system files
+.DS_Store
+
+# Ignore build and cache files
+.next/
+node_modules/
+.vscode/
+
+# Ignore environment variables (if any)
+.env
+.env.local
+.env.development
+.env.production
