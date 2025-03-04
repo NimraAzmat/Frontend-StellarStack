@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import InputField from "../../../../../components/InputField";
-import SelectField from "../../../../../components/SelectField";
-import Button from "../../../../../components/Button";
-import '../../../../../globals.css';
+import InputField from "@/app/components/InputField";
+import SelectField from "@/app/components/SelectField";
+import Button from "@/app/components/Button";
+import '@/app/globals.css';
 export default function EditJobPage() {
   const router = useRouter();
   const { id } = useParams();
