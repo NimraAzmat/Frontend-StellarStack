@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Button from "../../../components/Button";
+import Button from "@/app/components/Button";
 import Table from "@/app/components/Table";
-import '../../../globals.css';
+import '@/app/globals.css';
 export default function ManageJobs() {
   const router = useRouter();
   const [jobs, setJobs] = useState([]);
