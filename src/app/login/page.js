@@ -71,7 +71,7 @@ export default function LoginPage() {
           <Button type="submit">Login</Button>
         </form>
         <p className="text-center text-gray-600 mt-4">
-          Don't have an account?
+          Dont have an account?
           <Button className="link-btn" onClick={() => router.push("/register")}>
             Register here
           </Button>
